@@ -1,0 +1,26 @@
+---
+#
+# got this from https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+# with some small changes
+#
+# will add something to use a different CNI ( flannel, calico, weavnet )
+# can pass that in with a variable using this technique
+# https://dzone.com/articles/environment-variable-with-vagrant-and-ansible
+#
+- hosts: all
+  become: true
+  tasks:
+  - name: Include node tasks
+    include: common/node-tasks.yaml
+
+  - name: Copy the join command to server location
+    copy: 
+      src: join-command 
+      dest: /tmp/join-command.sh 
+      mode: 0777
+
+  - name: Join the node to cluster
+    command: sh /tmp/join-command.sh
+
+  handlers:
+    - include: handler/handlers.yml

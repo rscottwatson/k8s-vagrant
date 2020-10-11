@@ -1,0 +1,4 @@
+.vagrant
+./kubernetes_setup/join-command
+wip/
+kubeconfig.conf

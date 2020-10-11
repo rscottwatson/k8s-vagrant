@@ -1,0 +1,13 @@
+---
+- name: Initialize the Kubernetes cluster using kubeadm for calico
+  command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
+
+- include: ../common/copy-kubeconfig.yml
+
+- name: Install calico CNI
+  become: false
+  #command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
+  command: "{{ item }}"
+  with_items:
+      - kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+      - kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
