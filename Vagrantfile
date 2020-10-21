@@ -16,8 +16,7 @@ IMAGE_NAME = "bento/ubuntu-18.04"
 
 K8S_VERSION_ENV = ENV.has_key?('K8S_VERSION') ? ENV['K8S_VERSION'] : ""
 K8S_CNI_ENV     = ENV.has_key?('K8S_CNI') ? ENV['K8S_CNI'] : "calico" 
-N               = ENV.has_key?('K8S_WORKER_COUNT') ? ENV['K8S_WORKER_COUNT'] : 1
-
+N = ENV.has_key?('K8S_WORKER_COUNT') ? ENV['K8S_WORKER_COUNT'].to_i : 1
 
 Vagrant.configure("2") do |config|
     # is this to allow us to ssh from one node to the other?
