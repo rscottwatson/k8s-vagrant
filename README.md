@@ -15,9 +15,10 @@
 ## About The Project
 
 This is my attempt to spin up kubernetes clusters quickly while studying for the CKA certification.
-I found that using docker desktop and minikube was not complete enough for some type of testing.
+I found that using docker desktop and minikube was not complete enough for some of the tests I wanted to perform.
 
-
+## Todo
+Need to remove docker as the CRI since it will be unsupported as of k8s 1.20
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -59,6 +60,8 @@ K8S_VERSION        # version of kubernetest to deploy format is package release
 K8S_WORKER_COUNT   # number of worker nodes to deploy default 1
 K8S_CNI            # What network plugin to deploy. 
                      Supported CNI plugins are weavenet, calico and flannel calico is the default
+K8S_CRI            # What container runtime to support
+                     Supported CRI plugins are containerd, docker [containerd]
 ```
 
 1. Basic startup
