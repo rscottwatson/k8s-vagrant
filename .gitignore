@@ -2,3 +2,4 @@
 ./kubernetes-setup/join-command
 wip/
 kubeconfig.conf
+kubernetes-setup/join-command

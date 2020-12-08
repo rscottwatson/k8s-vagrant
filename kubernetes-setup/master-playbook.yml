@@ -33,11 +33,9 @@
      ansible_become: no
 
   - name: get kubeconfig conf file
-    copy: 
+    fetch: 
       src: /etc/kubernetes/admin.conf
       dest: kubeconfig.conf
-      remote_src: yes
-      force: yes 
       
   handlers:
     - include: handler/handlers.yml
